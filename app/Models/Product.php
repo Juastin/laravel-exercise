@@ -36,5 +36,7 @@ class Product extends Model
      * @var string
      */
     protected $primaryKey = 'id';
-
+    /**
+     * @var mixed
+     */
 }
