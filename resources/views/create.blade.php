@@ -3,14 +3,14 @@
 @section('content')
     <form action="{{route('products.store')}}" name="create-product" method="post">
         @csrf
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input id="name" type="text" name="name" class="form-control" required="">
+        <div class="p-6 bg-white border-b border-gray-200">
+            <label for="name">Name</label><br>
+            <input id="name" type="text" name="name" class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Name" required="">
         </div>
-        <div class="form-group">
-            <label for="info">Info</label>
-            <input id="info" type="text" name="info" class="form-control" required="">
+        <div class="p-6 bg-white border-b border-gray-200">
+            <label for="info">Information</label><br>
+            <input id="info" type="text" name="info" class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Information" required="">
         </div>
-        <input type="submit" name="send" class="btn btn-dark btn-block">
+        <input type="submit" name="send" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
     </form>
 @endsection

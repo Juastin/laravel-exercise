@@ -15,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('index', ['products' => Product::all()]);
+        return view('index', ['products' => Product::all(), 'i' => 1]);
     }
     /**
      * Show the form for creating a new resource.
