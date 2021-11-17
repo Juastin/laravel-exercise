@@ -22,12 +22,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/products', function () {
-    return view('products');
-})->middleware(['auth'])->name('products');
-
-Route::get('/products/create', function () {
-    return view('products/create');
-})->middleware(['auth'])->name('products/create');
+Route::resource('products', ProductController::class);
 
 require __DIR__.'/auth.php';
