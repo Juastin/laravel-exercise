@@ -10,6 +10,15 @@ class Product extends Model
     use HasFactory;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'name',
+        'info',
+    ];
+    /**
      * The database connection that should be used by the model.
      *
      * @var string
