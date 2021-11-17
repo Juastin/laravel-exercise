@@ -15,9 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products');
+        return view('products', ['products' => Product::all()]);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -83,10 +82,4 @@ class ProductController extends Controller
     {
         //
     }
-//    public function getProducts()
-//    {
-//        return Product::all('products')
-//            ->orderBy('id')
-//            ->pluck('name', 'id');
-//    }
 }
