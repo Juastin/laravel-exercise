@@ -39,47 +39,54 @@ class ProductController extends Controller
             'info' => 'required',
         ]);
         Product::create($request->all());
-        return back(); // TODO: Fix this to actually go back after succesfull creation.
+        return redirect()->route('products.index');
     }
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function show(Product $product)
     {
-        //
+        return view('show', ['product' => $product]);
     }
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Product $product)
     {
-        //
+        return view('edit', ['product' => $product]);
     }
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'info' => 'required',
+        ]);
+        $product->update($request->all());
+        return redirect()->route('products.index');
     }
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Product $product)
     {
-        //
+        $delproduct = Product::where('id', $product)->delete();
+
+        return redirect()->route('products.index'); // TODO: make delete work and make redirect actually redirect.
     }
 }
