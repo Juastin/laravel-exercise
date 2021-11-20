@@ -14,10 +14,10 @@
         </div>
     </div>
     <div class="p-6">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        <button style="display: inline-block" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 onclick="window.location='{{ route('products.edit', $product) }}'">Edit
         </button>
-        <form action="{{ route('products.destroy', $product->id) }}" method="POST">
+        <form style="display: inline-block" action="{{ route('products.destroy', $product->id) }}" method="POST">
             @csrf
             @method('DELETE')
             <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
