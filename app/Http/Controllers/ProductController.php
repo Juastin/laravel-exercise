@@ -87,6 +87,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('products.index'); // TODO: make delete work and make redirect actually redirect.
+        return redirect()->route('products.index');
     }
 }
