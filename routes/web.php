@@ -22,6 +22,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/settings', function () {
+    return view('settings');
+})->middleware(['auth'])->name('settings');
+
 Route::resource('products', ProductController::class);
 
 require __DIR__.'/auth.php';
