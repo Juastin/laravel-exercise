@@ -46,9 +46,9 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
-                        <form action="{{ route('settings') }}">
+                        <form action="{{ route('settings.index') }}">
                             @csrf
-                            <x-dropdown-link :href="route('settings')"
+                            <x-dropdown-link :href="route('settings.index')"
                                              onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Settings') }}
