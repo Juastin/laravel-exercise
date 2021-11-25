@@ -1,66 +1,45 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# 🧱 Laravel exercise made by Justin Passchier for an application 🧱
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Introduction
+This project is a small demonstration of a working Laravel project with an authentication system and a CRUD system for products. This project requires a working database for laravel to migrate to and execute CRUD statements to and a working version of PHP installed. To setup this project perform the following steps.
 
-## About Laravel
+## Step 1. Database installation
+For this project you will need to have a database running. In this example I will demonstrate this using a local MySQL database running via XAMPP.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Installing XAMPP
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+First you will need to [download XAMPP](https://www.apachefriends.org/index.html) and follow the instructions. The installation is straight forward and I suggest not altering the installation folders location. After installing XAMPP, open it and start up MySQL by clicking on start. It should start running on port `3306`. If you want to use PhpMyAdmin as DBMS start Apache aswell. You can open PhpMyAdmin by clicking on Admin in the MySQL row.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Make a database
 
-## Learning Laravel
+In this example I will open PhpMyAdmin to create a new database called `laravel`. To do this: open XAMPP, click on the button Admin in the MySQL row and this will redirect you to PhpMyAdmin in your browser. When openend, click on the button `New` in the sidebar to create a new database, this will open up a new page, fill in the name for you database here. For my example I will use `laravel`. When you've chosen your name, click on the button create to create a database.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+![image](https://user-images.githubusercontent.com/32838627/143496288-d2d00c81-fc73-40a1-9f55-025061a8d541.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+### Chaning the .env
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Next we will need to change the Laravel project's environment file to connect the local database to the project. Open the project in your favorite IDE and open the `.env` file. In this file you will find the following:
 
-### Premium Partners
+![image](https://user-images.githubusercontent.com/32838627/143496035-51fe9b1b-09df-44a1-8711-db18c6ffc67d.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[CMS Max](https://www.cmsmax.com/)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-- **[Romega Software](https://romegasoftware.com)**
+Change these values to fit your new database and to be able to connect to it. You can check these settings by going to the user accounts tab in PhpMyAdmin, XAMPP itself and by checking the name of the database you've created.
 
-## Contributing
+## Step 2. Migrating the database.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Open powershell or cmd (WSL2 also works if PHP is installed in this distro). Move to the folder where you've cloned the project and run the command `php artisan migrate` to migrate the current migrations into your own database. More about laravels migrations can be found [here](https://laravel.com/docs/8.x/migrations)
 
-## Code of Conduct
+## Step 3. Running the project 
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+After you've completed the last couple of steps you can run the project by typing the following command in your powershell or cmd window (WSL2 also works if PHP is installed in the distro): `php artisan serve`. After you've executed this you can browse to the url http://127.0.0.1:8000/. In the top right you can see a button to login or register to go to the functionality of the project after you've logged in. 
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Troubleshooting
 
-## License
+### MySQL won't start in XAMPP
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+If MySQL or Apache won't start, it might be due to an already open port by another application. If this is a problem, change the port by clicking on config in the MySQL row and selecting `my.ini`. 
+
+![image](https://user-images.githubusercontent.com/32838627/143495212-8e8eba6e-2bbb-4f4b-834d-b89678f8b844.png)
+
+Scroll down till you see both these ports and change them to another value, like for example `3307` or `33060`. Don't forget to also change these values in the `.env` file in the laravel-exercise project.
