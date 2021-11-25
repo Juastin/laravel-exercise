@@ -1,4 +1,4 @@
-# 🧱 Laravel exercise made by Justin Passchier for an application 🧱
+# 🧱 Laravel exercise made by Justin Passchier 🧱
 
 ## Introduction
 This project is a small demonstration of a working Laravel project with an authentication system and a CRUD system for products. This project requires a working database for laravel to migrate to and execute CRUD statements to and a working version of PHP installed. To setup this project perform the following steps.
