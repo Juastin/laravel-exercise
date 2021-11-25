@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
-class ProductController extends Controller
+class SettingsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('index', ['products' => Product::all(), 'i' => 1]);
+        return view('settings', ['user' => Auth::user()]);
     }
     /**
      * Show the form for creating a new resource.
@@ -24,7 +27,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('create');
     }
     /**
      * Store a newly created resource in storage.
@@ -49,7 +51,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return view('show', ['product' => $product]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -59,23 +60,37 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('edit', ['product' => $product]);
     }
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'info' => 'required',
+        $userId = Auth::id();
+        $user = User::findOrFail($userId);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:225|'. Rule::unique('users')->ignore($user->id),
         ]);
-        $product->update($request->all());
-        return redirect()->route('products.index');
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user->fill([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
+        $user->save();
+
+        return redirect()->route('settings.index');
     }
     /**
      * Remove the specified resource from storage.
@@ -87,6 +102,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('products.index');
+        return redirect()->route('products.index'); // TODO: make delete work and make redirect actually redirect.
     }
 }
