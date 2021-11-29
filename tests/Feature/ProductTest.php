@@ -4,8 +4,10 @@ namespace Tests\Feature;
 
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Tests\TestCase;
 
@@ -71,5 +73,44 @@ class ProductTest extends TestCase
             ->get(route('products.edit', $product));
 
         $response->assertStatus(200);
+    }
+    /**
+     * A test to check if a product can be created using the post.
+     *
+     * @return void
+     */
+    public function test_create_product_and_store_in_database()
+    {
+        $product = ['name' => 'kaas', 'info' => 'kaas'];
+        $this->post(route('products.store', $product));
+        $this->assertDatabaseHas('products', ['name' => 'kaas']);
+    }
+
+    /**
+     * A test to check if a product actually deletes from the database after creating.
+     *
+     * @return void
+     */
+    public function test_delete_product()
+    {
+        $product = ['name' => 'deleteThis', 'info' => 'deleteThis'];
+        $this->post(route('products.store', $product));
+
+        $delProduct = DB::table('products')->where('name', 'deleteThis')->first();
+        $this->delete(route('products.destroy', $delProduct->id));
+
+        $this->assertDatabaseMissing('products', ['name' => 'deleteThis']);
+    }
+    public function test_update_product()
+    {
+        $product = ['name' => 'editThis', 'info' => 'editThis'];
+        $this->post(route('products.store', $product));
+
+        $editProduct = DB::table('products')->where('name', 'editThis')->first();
+
+        $edit = ['name' => 'change', 'info'=> 'change'];
+        $this->put(route('products.update',['product' => $editProduct->id, 'request' => $edit]));
+
+        $this->assertDatabaseMissing('products', ['name' => 'editThis']);
     }
 }
