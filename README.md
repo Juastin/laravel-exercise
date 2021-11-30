@@ -37,7 +37,9 @@ In the project itself it is possible to create a product, view a product by clic
 
 ## Testing
 
-To run the UnitTests from this project you first need to have the application running with `php artisan serve` and have a local database running that is connected via the `.env` file. After that's done you can run the UnitTests with the command `php artisan test`. One word of notice, the test `update product` is not working correctly and it is normal that this test will fail. This does not mean the update functionality is not working, only that the test is not working correctly.
+To run the UnitTests from this project you first need to have the application running with `php artisan serve` and have a local database running that is connected via the `.env` file. After that's done you can run the UnitTests with the command `php artisan test`. One word of notice, the test `update product` is not working correctly and it is normal that this test will fail. This does not mean the update functionality is not working, only that the test is not working correctly. 
+
+After running the test the database does get cleared and inserted with the information necessary for testing, this means you will have to create a new account. 
 
 
 ## Troubleshooting
