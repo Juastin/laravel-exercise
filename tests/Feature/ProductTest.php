@@ -101,6 +101,11 @@ class ProductTest extends TestCase
 
         $this->assertDatabaseMissing('products', ['name' => 'deleteThis']);
     }
+    /**
+     * A test to check if a product actually changes in the database after update has been called.
+     *
+     * @return void
+     */
     public function test_update_product()
     {
         $product = ['name' => 'editThis', 'info' => 'editThis'];
