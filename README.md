@@ -46,4 +46,4 @@ If MySQL or Apache won't start, it might be due to an already open port by anoth
 
 ![image](https://user-images.githubusercontent.com/32838627/143495212-8e8eba6e-2bbb-4f4b-834d-b89678f8b844.png)
 
-Scroll down till you see both these ports and change them to another value, like for example `3307` or `33060`. Don't forget to also change these values in the `.env` file in the laravel-exercise project.
+Scroll down till you see both these ports and change them to another value, for example `3307` or `33060`. Don't forget to also change these values in the `.env` file in the laravel-exercise project.
