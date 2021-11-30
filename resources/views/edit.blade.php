@@ -1,7 +1,7 @@
 @extends('products')
 
 @section('content')
-    <form action="{{route('products.update')}}" name="create-product" method="POST">
+    <form action="{{route('products.update', $product)}}" name="create-product" method="POST">
         @csrf
         @method('PUT')
         <input name="product" type="hidden" value="{{$product->id}}">

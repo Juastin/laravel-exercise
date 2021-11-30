@@ -107,13 +107,11 @@ class ProductTest extends TestCase
         $this->post(route('products.store', $product));
 
         $editProduct = DB::table('products')->where('name', 'editThis')->first();
+        $product = Product::find(5);
 
-        // Todo. Make request a mocked request, or change $edit to be an actual request with the values filled.
-//        $edit = ['name' => 'change', 'info'=> 'change'];
-//        $this->put(route('products.update',['product' => $editProduct->id, 'request' => $edit]));
+        // Todo, fix unitTest for update. Now doesn't update for some reason, while the blade form works.
         $request = ['name' => 'change', 'info'=> 'change', 'product' => $editProduct];
-//        $request->put('product', $editProduct);
-        $this->post(route('products.update'), $request);
+        $this->put(route('products.update', ['request' => $request, 'product' => $product]));
 
         $this->assertDatabaseMissing('products', ['name' => 'editThis']);
     }
