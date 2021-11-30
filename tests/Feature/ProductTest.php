@@ -109,8 +109,11 @@ class ProductTest extends TestCase
         $editProduct = DB::table('products')->where('name', 'editThis')->first();
 
         // Todo. Make request a mocked request, or change $edit to be an actual request with the values filled.
-        $edit = ['name' => 'change', 'info'=> 'change'];
-        $this->put(route('products.update',['product' => $editProduct->id, 'request' => $edit]));
+//        $edit = ['name' => 'change', 'info'=> 'change'];
+//        $this->put(route('products.update',['product' => $editProduct->id, 'request' => $edit]));
+        $request = ['name' => 'change', 'info'=> 'change', 'product' => $editProduct];
+//        $request->put('product', $editProduct);
+        $this->post(route('products.update'), $request);
 
         $this->assertDatabaseMissing('products', ['name' => 'editThis']);
     }

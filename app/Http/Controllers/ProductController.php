@@ -65,15 +65,16 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
         $request->validate([
             'name' => 'required',
             'info' => 'required',
+            'product' => 'required',
         ]);
+        $product = Product::find($request->input('product'));
         $product->update($request->all());
         return redirect()->route('products.index');
     }
