@@ -4,6 +4,7 @@
     <form action="{{route('products.update', $product)}}" name="create-product" method="POST">
         @csrf
         @method('PUT')
+        <input name="product" type="hidden" value="{{$product->id}}">
         <div class="p-6 bg-white border-b border-gray-200">
             <label for="name">Name</label><br>
             <input id="name" type="text" name="name" value="{{$product->name}}" class="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Name" required="">

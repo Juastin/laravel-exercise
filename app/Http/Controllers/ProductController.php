@@ -73,7 +73,9 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'info' => 'required',
+            'product' => 'required',
         ]);
+        $product = Product::find($request->input('product'));
         $product->update($request->all());
         return redirect()->route('products.index');
     }
