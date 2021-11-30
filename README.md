@@ -33,6 +33,10 @@ Open powershell or cmd (WSL2 also works if PHP is installed in this distro). Mov
 
 After you've completed the last couple of steps you can run the project by typing the following command in your powershell or cmd window (WSL2 also works if PHP is installed in the distro): `php artisan serve`. After you've executed this you can browse to the url http://127.0.0.1:8000/. In the top right you can see a button to login or register to go to the functionality of the project after you've logged in. 
 
+## Testing
+
+To run the UnitTests from this project you first need to have the application running with `php artisan serve` and have a local database running that is connected via the `.env` file. After that's done you can run the UnitTests with the command `php artisan test`. One word of notice, the test `update product` is not working correctly and it is normal that this test will fail. This does not mean the update functionality is not working, only that the test is not working correctly.
+
 
 ## Troubleshooting
 
